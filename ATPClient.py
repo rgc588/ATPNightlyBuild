@@ -15,5 +15,5 @@ class ATPClient:
         self.log.info("Request Json: " + json_str)
         self.response = requests.post(url=self.url, json=json_str, headers=self.headers)
         self.request = self.response.request
-        self.log.info("Status Code: " + self.response.status_code)
+        self.log.info("Status Code: " + str(self.response.status_code))
         self.log.info("Response: " + self.response.json())
