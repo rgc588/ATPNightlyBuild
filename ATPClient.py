@@ -1,4 +1,5 @@
 import requests
+import os
 from Log import Log
 
 
@@ -6,7 +7,11 @@ class ATPClient:
     def __init__(self):
         self.log = Log.logger
         self.headers = {'content-type': 'application/json'}
-        self.url = "http://hqswqadb02/atp_api/api/tasks"
+        self.url = r"http://hqswqadb02/atp_api/api/tasks"
+        if os.environ.get('HOST'):
+            self.log.info("Using Server Host from Env...")
+            self.url = os.environ.get('HOST') + r"/api/tasks"
+            self.log.info("Server Path: " + self.url)
         self.response = None
         self.request = None
 
